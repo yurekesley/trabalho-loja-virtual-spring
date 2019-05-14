@@ -14,9 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>qualquer-coisa-app</name>
 
-	<properties>
-
-	</properties>
+	<properties></properties>
 
 	<dependencies>
 		<dependency>

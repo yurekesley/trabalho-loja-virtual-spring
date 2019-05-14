@@ -1,15 +1,14 @@
-# Getting Started
+# trabalho-loja-virtual
 
-### Reference Documentation
-For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+### Instalação Docker
 
-### Guides
-The following guides illustrate how to use some features concretely:
+```sh
+docker build -t loja-virtual-spring .
+```
+```sh
+docker run -p 9990:9990 -p 8080:8080 loja-virtual
+```
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+### URLS
 
