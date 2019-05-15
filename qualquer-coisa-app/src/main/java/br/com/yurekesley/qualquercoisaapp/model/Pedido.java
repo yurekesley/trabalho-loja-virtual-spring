@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -15,7 +17,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "TBL_PEDIDOS")
+@Table(name = "TBL_PEDIDOS", schema = "LOJA")
 public @Data class Pedido {
 
 	@Id
@@ -23,10 +25,13 @@ public @Data class Pedido {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedidos_id_seq")
 	private Long id;
 
+	@ManyToOne
+	@JoinColumn(name="cliente_id", nullable=false)
+	private Cliente cliente;
+	
+	@OneToMany
+	private List<ItemPedido> items;
+
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
-
-	@OneToMany
-	private List<Produto> items;
-
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "TBL_REPOSICOES")
+@Table(name = "TBL_REPOSICOES", schema = "LOJA")
 public @Data class Reposicao {
 
 	@Id

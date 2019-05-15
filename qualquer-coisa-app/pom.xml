@@ -14,7 +14,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>qualquer-coisa-app</name>
 
-	<properties></properties>
+	<properties>
+		<flyway.user>postgres</flyway.user>
+		<flyway.password>postgres</flyway.password>
+		<flyway.schemas>loja</flyway.schemas>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -33,9 +37,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
 		</dependency>
 
 		<dependency>
