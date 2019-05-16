@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "TBM_ITEM_PEDIDO", schema = "LOJA")
+@Table(name = "TBL_ITEM_PEDIDO")
 public @Data class ItemPedido {
 
 	@Id
@@ -23,7 +23,7 @@ public @Data class ItemPedido {
 	private Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "poduto_id", referencedColumnName = "id")
+    @JoinColumn(name = "PRODUTO_ID", referencedColumnName = "id")
 	private Produto poduto;
 	
 	@Column

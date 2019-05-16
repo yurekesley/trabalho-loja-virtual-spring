@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "TBL_PEDIDOS", schema = "LOJA")
+@Table(name = "TBL_PEDIDOS")
 public @Data class Pedido {
 
 	@Id
@@ -30,6 +31,9 @@ public @Data class Pedido {
 	private Cliente cliente;
 	
 	@OneToMany
+	@JoinTable( name="TBL_PEDIDOS_ITENS", 
+	joinColumns = @JoinColumn( name="PEDIDO_ID"),
+	inverseJoinColumns = @JoinColumn( name="PRODUTO_ID"))
 	private List<ItemPedido> items;
 
 	@Enumerated(EnumType.STRING)
