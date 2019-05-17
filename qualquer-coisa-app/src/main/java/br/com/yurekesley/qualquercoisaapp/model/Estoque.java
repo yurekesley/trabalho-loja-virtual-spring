@@ -2,12 +2,11 @@ package br.com.yurekesley.qualquercoisaapp.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -23,9 +22,9 @@ public @Data class Estoque {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estoque_id_seq")
 	private Long id;
 
+	@Column(name = "LOCALIZACAO")
+	private String localizacao;
+
 	@OneToMany
-	@JoinTable( name="TBL_ESTOQUE_ITENS", 
-	joinColumns = @JoinColumn( name="ESTOQUE_ID"),
-	inverseJoinColumns = @JoinColumn( name="PRODUTO_ID"))
-	private List<Produto> itens;
+	private List<Item> itens;
 }

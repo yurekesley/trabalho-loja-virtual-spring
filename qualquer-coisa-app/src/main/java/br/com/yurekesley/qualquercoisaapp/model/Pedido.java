@@ -2,14 +2,16 @@ package br.com.yurekesley.qualquercoisaapp.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -30,12 +32,11 @@ public @Data class Pedido {
 	@JoinColumn(name="cliente_id", nullable=false)
 	private Cliente cliente;
 	
-	@OneToMany
-	@JoinTable( name="TBL_PEDIDOS_ITENS", 
-	joinColumns = @JoinColumn( name="PEDIDO_ID"),
-	inverseJoinColumns = @JoinColumn( name="PRODUTO_ID"))
-	private List<ItemPedido> items;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pedido", fetch = FetchType.LAZY)
+	private List<Item> itens;
 
+	@Column(name = "status")
 	@Enumerated(EnumType.STRING)
-	private StatusPedido status;
+	private StatusPedido status = StatusPedido.PENDENTE;
+
 }
