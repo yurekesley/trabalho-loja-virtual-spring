@@ -33,7 +33,7 @@ public @Data class Pedido {
 	private Cliente cliente;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pedido", fetch = FetchType.LAZY)
-	private List<Item> itens;
+	private List<ItemPedido> itens;
 
 	@Column(name = "status")
 	@Enumerated(EnumType.STRING)

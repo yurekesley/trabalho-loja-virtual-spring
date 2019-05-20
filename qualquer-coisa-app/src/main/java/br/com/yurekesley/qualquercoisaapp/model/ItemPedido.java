@@ -14,8 +14,8 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "TBL_ITEM")
-public @Data class Item {
+@Table(name = "TBL_ITEM_PEDIDO")
+public @Data class ItemPedido {
 
 	@Id
 	@SequenceGenerator(name = "item_pedido_id_seq", sequenceName = "item_pedido_id_seq", initialValue = 1, allocationSize = 1)
@@ -26,6 +26,10 @@ public @Data class Item {
 	@JoinColumn(name="PRODUTO_ID", nullable = false)
 	private Produto produto;
 		
+	@ManyToOne
+	@JoinColumn(name="PEDIDO_ID", nullable = false)
+	private Pedido pedido;
+	
 	@Column(updatable = false)
 	private Integer quantidade;
 
@@ -35,9 +39,6 @@ public @Data class Item {
 	@Column(updatable = false)
 	private Double totalLiquido;
 	
-	@ManyToOne
-	@JoinColumn(name="PEDIDO_ID", nullable = false)
-	private Pedido pedido;
 	
 	@PrePersist
 	public void popularInformacoesDoItem() {

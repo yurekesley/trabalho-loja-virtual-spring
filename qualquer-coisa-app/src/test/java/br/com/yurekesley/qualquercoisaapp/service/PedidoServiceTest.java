@@ -1,5 +1,5 @@
 
-package br.com.yurekesley.qualquercoisaapp;
+package br.com.yurekesley.qualquercoisaapp.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -13,8 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.yurekesley.qualquercoisaapp.AppTest;
 import br.com.yurekesley.qualquercoisaapp.model.Cliente;
-import br.com.yurekesley.qualquercoisaapp.model.Item;
+import br.com.yurekesley.qualquercoisaapp.model.ItemPedido;
 import br.com.yurekesley.qualquercoisaapp.model.Pedido;
 import br.com.yurekesley.qualquercoisaapp.model.Produto;
 import br.com.yurekesley.qualquercoisaapp.service.ClienteService;
@@ -28,6 +29,7 @@ public class PedidoServiceTest extends AppTest {
 
 	@Autowired
 	private PedidoService pedidoService;
+		
 	@Autowired
 	private ProdutoService produtoService;
 
@@ -39,9 +41,9 @@ public class PedidoServiceTest extends AppTest {
 
 	private Pedido pedido = null;
 
-	private Item item = new Item();
+	private ItemPedido item = new ItemPedido();
 
-	private List<Item> items = null;
+	private List<ItemPedido> items = null;
 
 	@Before
 	public void before() {
@@ -53,7 +55,7 @@ public class PedidoServiceTest extends AppTest {
 		this.item.setProduto(this.produto);
 		this.item.setQuantidade(10);
 		this.item.setPedido(this.pedido);
-		this.items = new ArrayList<Item>(Arrays.asList(item));
+		this.items = new ArrayList<ItemPedido>(Arrays.asList(item));
 		
 		
 		this.pedido.setCliente(cliente);
@@ -98,7 +100,7 @@ public class PedidoServiceTest extends AppTest {
 
 		this.item.setQuantidade(10);
 		this.item.setPedido(this.pedido);
-		pedido.setItems(items);
+		pedido.setItens(items);
 
 
 		this.pedidoService.save(pedido);	

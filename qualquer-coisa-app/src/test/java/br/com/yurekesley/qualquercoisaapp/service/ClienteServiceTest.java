@@ -1,4 +1,4 @@
-package br.com.yurekesley.qualquercoisaapp;
+package br.com.yurekesley.qualquercoisaapp.service;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.yurekesley.qualquercoisaapp.AppTest;
 import br.com.yurekesley.qualquercoisaapp.model.Cliente;
-import br.com.yurekesley.qualquercoisaapp.service.ClienteService;
 
 public class ClienteServiceTest extends AppTest {
 	

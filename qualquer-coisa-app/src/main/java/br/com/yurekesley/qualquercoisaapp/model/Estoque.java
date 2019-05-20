@@ -26,5 +26,5 @@ public @Data class Estoque {
 	private String localizacao;
 
 	@OneToMany
-	private List<Item> itens;
+	private List<ItemEstoque> itens;
 }

@@ -7,5 +7,5 @@ import br.com.yurekesley.qualquercoisaapp.model.Estoque;
 
 @Repository
 public interface EstoqueRepository extends JpaRepository<Estoque, Long> {
-
+	
 }
