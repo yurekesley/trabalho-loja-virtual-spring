@@ -31,27 +31,38 @@ public class PedidoServiceTest extends AppTest {
 
 	private Long clienteId = 1l;
 	private Cliente cliente = null;
-
-	private Produto produto = null;
-	private Long produtoId = 1l;
-
+	
 	private Pedido pedido = null;
 
-	private ItemPedido item = new ItemPedido();
+	private Produto cd = null;
+	private Produto camisa = null;
+
+
+	private ItemPedido iCd = new ItemPedido();
+	private ItemPedido iCamisa = new ItemPedido();
+
 
 	private List<ItemPedido> items = null;
 
 	@Before
 	public void before() {
 		this.cliente = this.clienteService.findById(clienteId);
-		this.produto = this.produtoService.findById(produtoId);
+		
+		this.cd = this.produtoService.findById(1l);
+		this.camisa = this.produtoService.findById(2l);
+
 
 		this.pedido = new Pedido();
 
-		this.item.setProduto(this.produto);
-		this.item.setQuantidade(10);
-		this.item.setPedido(this.pedido);
-		this.items = new ArrayList<ItemPedido>(Arrays.asList(item));
+		this.iCd.setProduto(this.cd);
+		this.iCd.setQuantidade(2);
+		this.iCd.setPedido(this.pedido);
+
+		this.iCamisa.setProduto(this.camisa);
+		this.iCamisa.setQuantidade(3);
+		this.iCamisa.setPedido(this.pedido);
+		
+		this.items = new ArrayList<ItemPedido>(Arrays.asList(iCd, iCamisa ));
 				
 		this.pedido.setCliente(cliente);
 		this.pedido.setItens((items));
@@ -69,15 +80,15 @@ public class PedidoServiceTest extends AppTest {
 
 	@Test
 	public void deveCalcularTotalLiquido() {
-		this.produto.setValor(2.0);
+		this.cd.setValor(2.0);
 
-		this.item.setQuantidade(10);
-		this.item.setPedido(this.pedido);
+		this.iCd.setQuantidade(10);
+		this.iCd.setPedido(this.pedido);
 		pedido.setItens((items));
 
 		this.pedidoService.save(pedido);	
 		
-		assertEquals(Double.valueOf(20.00), this.item.getTotalLiquido());
+		assertEquals(Double.valueOf(20.00), this.iCd.getTotalLiquido());
 
 	}
 	
@@ -85,16 +96,15 @@ public class PedidoServiceTest extends AppTest {
 	@Test
 	public void deveCalcularValorUnitario() {
 		
-		this.produto.setValor(2.0);
+		this.cd.setValor(2.0);
 
-		this.item.setQuantidade(10);
-		this.item.setPedido(this.pedido);
+		this.iCd.setQuantidade(10);
+		this.iCd.setPedido(this.pedido);
 		pedido.setItens(items);
 
 
 		this.pedidoService.save(pedido);	
-
-		assertEquals(Double.valueOf(2.0), this.item.getValorUnitario());
+		assertEquals(Double.valueOf(2.0), this.iCd.getValorUnitario());
 
 		
 	}
