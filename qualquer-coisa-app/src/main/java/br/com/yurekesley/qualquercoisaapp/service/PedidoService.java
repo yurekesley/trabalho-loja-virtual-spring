@@ -4,22 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.yurekesley.qualquercoisaapp.model.Pedido;
+import br.com.yurekesley.qualquercoisaapp.model.Produto;
+import br.com.yurekesley.qualquercoisaapp.repository.PedidoRepository;
 
 @Service
-public class PedidoService extends GenericService<Pedido, Long> {
-		
+public class PedidoService extends GenericService<Pedido, Long> implements IPedido {
+
 	@Autowired
-	private EstoqueService estoqueService;
-	
+	private PedidoRepository repository;
+
+	@Autowired
+	private ItemEstoqueService estoqueService;
+
 	@Override
 	public void save(Pedido pedido) {
-				
-		//for (Item item : pedido.getItens()) {
-				//item.getProduto()
-		//}
-		
-		// this.repository.save(t);
+
+		pedido.getItens().forEach((item -> {
+
+			Produto produto = item.getProduto();
+			Integer quantidade = item.getQuantidade();
+
+			this.estoqueService.removerItemDoEstoque(produto, quantidade);
+
+		}));
+
+		this.repository.save(pedido);
 	}
-	
-	
 }

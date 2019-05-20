@@ -38,8 +38,7 @@ public @Data class ItemPedido {
 	
 	@Column(updatable = false)
 	private Double totalLiquido;
-	
-	
+		
 	@PrePersist
 	public void popularInformacoesDoItem() {
 		this.setValorUnitario(this.getProduto().getValor());

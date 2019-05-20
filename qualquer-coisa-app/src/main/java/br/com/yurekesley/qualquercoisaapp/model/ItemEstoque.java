@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "TBL_ITEM_ESTOQUE")
 public class ItemEstoque {
@@ -20,12 +19,7 @@ public class ItemEstoque {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="ESTOQUE_ID", nullable = false)
-	private Estoque estoque;
-	
-	@ManyToOne
-	@JoinColumn(name="PRODUTO_ID", nullable = false)
+	@JoinColumn(name = "PRODUTO_ID", nullable = false)
 	private Produto produto;
-		
-	
+
 }

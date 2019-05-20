@@ -2,7 +2,6 @@
 package br.com.yurekesley.qualquercoisaapp.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,9 +17,6 @@ import br.com.yurekesley.qualquercoisaapp.model.Cliente;
 import br.com.yurekesley.qualquercoisaapp.model.ItemPedido;
 import br.com.yurekesley.qualquercoisaapp.model.Pedido;
 import br.com.yurekesley.qualquercoisaapp.model.Produto;
-import br.com.yurekesley.qualquercoisaapp.service.ClienteService;
-import br.com.yurekesley.qualquercoisaapp.service.PedidoService;
-import br.com.yurekesley.qualquercoisaapp.service.ProdutoService;
 
 public class PedidoServiceTest extends AppTest {
 
@@ -56,26 +52,19 @@ public class PedidoServiceTest extends AppTest {
 		this.item.setQuantidade(10);
 		this.item.setPedido(this.pedido);
 		this.items = new ArrayList<ItemPedido>(Arrays.asList(item));
-		
-		
+				
 		this.pedido.setCliente(cliente);
 		this.pedido.setItens((items));
 	}
 
 	@After
 	public void after() {
-		this.pedidoService.deleteAll();
+		// this.pedidoService.deleteAll();
 	}
 
 	@Test
 	public void deveSalvarPedido() {
-
-	
 		this.pedidoService.save(pedido);
-
-		assertNotEquals(null, this.pedidoService.findById(pedido.getId()));
-		this.pedidoService.deleteById(pedido.getId());
-
 	}
 
 	@Test
