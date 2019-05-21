@@ -1,4 +1,3 @@
-
 package br.com.yurekesley.qualquercoisaapp.service;
 
 import static org.junit.Assert.assertEquals;
@@ -25,32 +24,29 @@ public class PedidoServiceTest extends AppTest {
 
 	@Autowired
 	private PedidoService pedidoService;
-		
+
 	@Autowired
 	private ProdutoService produtoService;
 
 	private Long clienteId = 1l;
 	private Cliente cliente = null;
-	
+
 	private Pedido pedido = null;
 
 	private Produto cd = null;
 	private Produto camisa = null;
 
-
 	private ItemPedido iCd = new ItemPedido();
 	private ItemPedido iCamisa = new ItemPedido();
-
 
 	private List<ItemPedido> items = null;
 
 	@Before
 	public void before() {
 		this.cliente = this.clienteService.findById(clienteId);
-		
+
 		this.cd = this.produtoService.findById(1l);
 		this.camisa = this.produtoService.findById(2l);
-
 
 		this.pedido = new Pedido();
 
@@ -61,16 +57,16 @@ public class PedidoServiceTest extends AppTest {
 		this.iCamisa.setProduto(this.camisa);
 		this.iCamisa.setQuantidade(3);
 		this.iCamisa.setPedido(this.pedido);
-		
-		this.items = new ArrayList<ItemPedido>(Arrays.asList(iCd, iCamisa ));
-				
+
+		this.items = new ArrayList<ItemPedido>(Arrays.asList(iCd, iCamisa));
+
 		this.pedido.setCliente(cliente);
 		this.pedido.setItens((items));
 	}
 
 	@After
 	public void after() {
-		// this.pedidoService.deleteAll();
+		this.pedidoService.deleteAll();
 	}
 
 	@Test
@@ -86,27 +82,25 @@ public class PedidoServiceTest extends AppTest {
 		this.iCd.setPedido(this.pedido);
 		pedido.setItens((items));
 
-		this.pedidoService.save(pedido);	
-		
+		this.pedidoService.save(pedido);
+
 		assertEquals(Double.valueOf(20.00), this.iCd.getTotalLiquido());
 
 	}
-	
-	
+
 	@Test
 	public void deveCalcularValorUnitario() {
-		
+
 		this.cd.setValor(2.0);
 
 		this.iCd.setQuantidade(10);
 		this.iCd.setPedido(this.pedido);
 		pedido.setItens(items);
 
+		this.pedidoService.save(pedido);
 
-		this.pedidoService.save(pedido);	
 		assertEquals(Double.valueOf(2.0), this.iCd.getValorUnitario());
 
-		
 	}
 
 }

@@ -25,20 +25,25 @@ public class ItemEstoqueService extends GenericService<ItemEstoque, Long> {
 
 	}
 
-	public void removerItemDoEstoque(Produto produto, Integer quantidade) {
+	public void verificaDisponibilidadeDoProdutoNoEstoque(Produto produto, Integer quantidade) {
 
 		for (int i = 1; i <= quantidade; i++) {
 
 			if (ehProdutoDisponivelNoEstoque(produto)) {
-				List<ItemEstoque> itemEstoque = repository.findTop1ByProduto(produto);
-				
-				itemEstoque.forEach((item) -> repository.delete(item));
-				
+				removeItemDoEstoque(produto);
 			} else {
-				System.out.println("Gerar reposicao");
+				gerarOrdemDeReposicaoParaOProduto(produto);
 			}
-
 		}
 
+	}
+
+	private void gerarOrdemDeReposicaoParaOProduto(Produto produto) {
+		System.out.println("Gerar reposicao");
+	}
+
+	private void removeItemDoEstoque(Produto produto) {
+		List<ItemEstoque> itemEstoque = repository.findTop1ByProduto(produto);
+		itemEstoque.forEach((item) -> repository.delete(item));
 	}
 }

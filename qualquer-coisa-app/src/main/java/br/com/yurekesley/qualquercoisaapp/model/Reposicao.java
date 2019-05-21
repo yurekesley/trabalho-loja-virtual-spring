@@ -14,11 +14,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "TBL_REPOSICOES")
-public @Data class Reposicao {
+@EqualsAndHashCode(callSuper=false)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Reposicao.class)
+public @Data class Reposicao extends Modelo {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@SequenceGenerator(name = "reposicoes_id_seq", sequenceName = "reposicoes_id_seq", initialValue = 1, allocationSize = 1)

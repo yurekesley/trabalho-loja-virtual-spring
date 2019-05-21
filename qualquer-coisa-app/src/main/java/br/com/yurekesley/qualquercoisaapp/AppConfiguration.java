@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement(mode = AdviceMode.PROXY, proxyTargetClass = true)
 public class AppConfiguration {
 
-	 @Autowired
-	 EntityManagerFactory emf;
+	@Autowired
+	EntityManagerFactory emf;
 
-	 @Bean(name = "transactionManager")
-	 public PlatformTransactionManager transactionManager() {
-	  JpaTransactionManager tm = new JpaTransactionManager();
-	  tm.setEntityManagerFactory(emf);
-	  return tm;
-	 }
-	
+	@Bean(name = "transactionManager")
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager tm = new JpaTransactionManager();
+		tm.setEntityManagerFactory(emf);
+		return tm;
+	}
+
 }

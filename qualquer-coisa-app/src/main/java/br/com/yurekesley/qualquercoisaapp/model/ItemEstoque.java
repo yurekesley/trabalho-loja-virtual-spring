@@ -9,9 +9,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "TBL_ITEM_ESTOQUE")
-public class ItemEstoque {
+@EqualsAndHashCode(callSuper=false)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = ItemEstoque.class)
+public class ItemEstoque extends Modelo {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@SequenceGenerator(name = "item_estoque_id_seq", sequenceName = "item_estoque_id_seq", initialValue = 1, allocationSize = 1)
