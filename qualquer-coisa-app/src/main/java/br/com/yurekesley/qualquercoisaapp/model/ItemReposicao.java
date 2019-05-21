@@ -1,7 +1,5 @@
 package br.com.yurekesley.qualquercoisaapp.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,8 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,10 +18,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "TBL_REPOSICOES")
+@Table(name = "TBL_ITEM_REPOSICAO")
 @EqualsAndHashCode(callSuper=false)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Reposicao.class)
-public @Data class Reposicao extends Modelo {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = ItemReposicao.class)
+public @Data class ItemReposicao extends Modelo {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,12 +31,10 @@ public @Data class Reposicao extends Modelo {
 	private Long id;
 
 	
-	@OneToMany
-	@JoinTable( name="TBL_REPOSICOES_ITENS", 
-	joinColumns = @JoinColumn( name="REPOSICAO_ID"),
-	inverseJoinColumns = @JoinColumn( name="PRODUTO_ID"))
-	private List<Produto> itens;
+	@ManyToOne
+	@JoinColumn(name = "PRODUTO_ID", nullable = false)
+	private Produto produto;
 
 	@Enumerated(EnumType.STRING)
-	private StatusReposicao status;
+	private StatusReposicao status = StatusReposicao.PENDENTE;
 }

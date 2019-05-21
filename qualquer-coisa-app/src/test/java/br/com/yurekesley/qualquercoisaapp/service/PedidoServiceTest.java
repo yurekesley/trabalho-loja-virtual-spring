@@ -64,11 +64,6 @@ public class PedidoServiceTest extends AppTest {
 		this.pedido.setItens((items));
 	}
 
-	@After
-	public void after() {
-		this.pedidoService.deleteAll();
-	}
-
 	@Test
 	public void deveSalvarPedido() {
 		this.pedidoService.save(pedido);

@@ -15,6 +15,9 @@ public class ItemEstoqueService extends GenericService<ItemEstoque, Long> {
 	@Autowired
 	private ItemEstoqueRepository repository;
 
+	@Autowired
+	private ReposicaoService reposicaoService;
+
 	private Integer quantidadeDeItensDisponiveisNoEstoque(Produto produto) {
 		return this.repository.countByProduto(produto);
 	}
@@ -39,7 +42,7 @@ public class ItemEstoqueService extends GenericService<ItemEstoque, Long> {
 	}
 
 	private void gerarOrdemDeReposicaoParaOProduto(Produto produto) {
-		System.out.println("Gerar reposicao");
+		this.reposicaoService.gerarReposicao(produto);
 	}
 
 	private void removeItemDoEstoque(Produto produto) {
